@@ -30,8 +30,7 @@ def cek():
 	sha224 ='e301f414993d5ec2bd1d780688d37fe41512f8b57f6923d054ef8e59'
 	sha384 = '3b21c44f8d830fa55ee9328a7713c6aad548fe6d7a4a438723a0da67c48c485220081a2fbc3e8c17fd9bd65f8d4b4e6b'
 	sha256 = '2c740d20dab7f14ec30510a11f8fd78b82bc3a711abe8a993acdb323e78e6d5e'
-	whirlpool  = '76df96157e632410998ad7f823d82930f79a96578acc8ac5ce1bfc34346cf64b4610aefa8a549da3f0c1da36dad314927cebf8ca6f3fcd0649d363c5a370dddb'
-
+	
 	if len(hash_str)==len(SHA512) and hash_str.isdigit()==False and hash_str.isalpha()==False and hash_str.isalnum()==True:
 	        print (B+"[=] "+G+"hash type : "+W+"SHA512")
 		hash = "SHA512"
@@ -57,9 +56,6 @@ def cek():
 		print (B+"[=] "+G+"hash type : "+W+"sha256")
 		hash = 'sha256'
 
-	if len(hash_str)==len(whirlpool) and hash_str.isdigit()==False and hash_str.isalpha()==False and hash_str.isalnum()==True:
-		print (B+"[=] "+G+"hash type : "+W+"whirlpool")
-	 	hash = 'whirlpool'
 
 	w = open("wordlist.txt","r").readlines()
 	date = time.asctime()
