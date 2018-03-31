@@ -16,7 +16,7 @@ import sys
 import hashlib
 import time
 import os
-from threading import *
+
 
 B = "\033[34m"; Y = "\033[33m"; G = "\033[32m"; W = "\033[0m";R = "\033[31m";
 
@@ -84,7 +84,7 @@ def cek():
 	print (B+"["+W+"="+B+"] "+G+"cek wordlist ..")
 	time.sleep(1)
 	try:
-		w = open("wordlist/wordlist.txt","r").readlines()
+		w = open("wordlist.txt","r").readlines()
 		x = len(w)
 	except IOError:
 		time.sleep(0.5)
