@@ -14,12 +14,12 @@ Hasher is a Hash Cracker that has supported more than 7 types of hashes
 - whirlpool
 
 # install [Termux]
-'''apt update upgrade
+''' apt update upgrade
 apt install python2
 apt install git
 git clone https://github.com/ciku370/hasher
 cd hasher
-python2 hash.py'''
+python2 hash.py '''
 
 # screenshot
 
