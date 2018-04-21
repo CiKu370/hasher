@@ -37,7 +37,7 @@ def banner_old():
 	print (Y+" 0{==================================================}0\n")
 
 def banner():
-	print (R+'\n               Hash Cracker'+W+' 2.3.6')
+	print (RR+'\n               Hash Cracker'+WW+' 2.3.6')
 	print (W+'   -------------------------------------------')
 	print (P+'   88  88    db    .dP"Y8 88  88 88888 88""Yb ')
 	print (P+'   88  88   dPYb   `Ybo." 88  88 88__  88__dP ')
@@ -295,7 +295,7 @@ def hash():
 		x = len(w)
 	except IOError:
 		time.sleep(0.5)
-		print (B+"["+R+"="+B+"]"+G+" wordlist not found\n")
+		print (B+"["+R+"="+B+"]"+G+" Can't load "+W+"wordlist.txt, "+G+"file not exist\n"+W)
 		sys.exit()
 
 	start = time.asctime()
