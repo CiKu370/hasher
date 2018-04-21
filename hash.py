@@ -37,14 +37,14 @@ def banner_old():
 	print (Y+" 0{==================================================}0\n")
 
 def banner():
-	print (RR+'\n               Hash Cracker'+WW+' 2.3.6')
-	print (W+'   -------------------------------------------')
-	print (P+'   88  88    db    .dP"Y8 88  88 88888 88""Yb ')
-	print (P+'   88  88   dPYb   `Ybo." 88  88 88__  88__dP ')
-	print (P+'   888888  dP__Yb  o.`Y8b 888888 88""  88"Yb  ')
-	print (P+'   88  88 dP""""Yb 8bodP  88  88 88888 88  Yb ')
-	print (W+'   -------------------------------------------')
-	print ("            \033[2;2m python2 "+sys.argv[0]+" --info\n")
+	print (RR+'\n              Hash Cracker'+WW+' 2.3.6')
+	print (W+'  -------------------------------------------')
+	print (P+'  88  88    db    .dP"Y8 88  88 88888 88""Yb ')
+	print (P+'  88  88   dPYb   `Ybo." 88  88 88__  88__dP ')
+	print (P+'  888888  dP__Yb  o.`Y8b 888888 88""  88"Yb  ')
+	print (P+'  88  88 dP""""Yb 8bodP  88  88 88888 88  Yb ')
+	print (W+'  -------------------------------------------')
+	print ("           \033[2;2m python2 "+sys.argv[0]+" --info\n")
 
 def info():
 
