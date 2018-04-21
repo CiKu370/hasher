@@ -18,7 +18,7 @@ Hasher is a Hash Cracker that has supported more than 7 types of hashes
 - ripemd160
 - whirlpool
 
-# [Install]
+# [ Installation ]
 ```
 $ apt update upgrade
 $ apt install python2 git
