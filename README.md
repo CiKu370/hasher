@@ -4,6 +4,7 @@ Hasher is a Hash Cracker that has supported more than 7 types of hashes
 
 # hasher feature
 - [x] auto detect hash
+- [x] windows supported
 - [x] fast decrypt
 - [x] support :
 
@@ -17,7 +18,7 @@ Hasher is a Hash Cracker that has supported more than 7 types of hashes
 - ripemd160
 - whirlpool
 
-# [Termux]
+# [Install]
 ```
 $ apt update upgrade
 $ apt install python2 git
