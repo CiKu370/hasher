@@ -108,6 +108,7 @@ def hash():
 	banner()
 
 	hash_str = raw_input(B+"["+W+"?"+B+"]"+G+" Hash : "+W)
+	hash_str = hash_str.lower()
 	time.sleep(0.5)
 	print (B+"["+R+"="+B+"] "+G+"Cek Hash Type ...")
 	time.sleep(1)
