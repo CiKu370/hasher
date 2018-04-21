@@ -6,6 +6,7 @@ Hasher is a Hash Cracker that has supported more than 7 types of hashes
 - [x] auto detect hash
 - [x] fast decrypt
 - [x] support :
+
 - md4
 - md5
 - sha1
@@ -19,8 +20,7 @@ Hasher is a Hash Cracker that has supported more than 7 types of hashes
 # [Termux]
 ```
 $ apt update upgrade
-$ apt install python2
-$ apt install git
+$ apt install python2 git
 $ git clone https://github.com/ciku370/hasher
 $ cd hasher
 $ python2 hash.py
