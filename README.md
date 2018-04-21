@@ -2,12 +2,15 @@
 
 Hasher is a Hash Cracker that has supported more than 7 types of hashes
 
-# list hash supported
+# hasher feature
+- [x] detect hash
+- [x] fast decrypt
+- [x] support 9 type hash
 - md4
 - md5
 - sha1
 - sha224
-- sha256
+- sha256 
 - sha384
 - sha512
 - ripemd160
