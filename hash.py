@@ -20,11 +20,42 @@ from re import search
 date = time.asctime()
 start1 = time.asctime()
 
-# Color
-BB = "\033[34;1m"; YY = "\033[33;1m"; GG = "\033[32;1m"; WW = "\033[0;1m";RR = "\033[31;1m";CC = "\033[36;1m";B = "\033[34m"; Y = "\033[33m"; G = "\033[32m"; W = "\033[0m";R = "\033[31m";C = "\033[36m";
-# Random color
-rand = (BB,YY,GG,WW,RR,CC)
-P = random.choice(rand)
+# color
+if sys.platform == "linux" or sys.platform == "linux2":
+
+	BB = "\033[34;1m" # Blue light
+	YY = "\033[33;1m" # Yellow light
+	GG = "\033[32;1m" # Green light
+	WW = "\033[0;1m"  # White light
+	RR = "\033[31;1m" # Red light
+	CC = "\033[36;1m" # Cyan light
+	B = "\033[34m"    # Blue
+	Y = "\033[33m"    # Yellow
+	G = "\033[32m"    # Green
+	W = "\033[0m"     # White
+	R = "\033[31m"    # Red
+	C = "\033[36m"    # Cyan
+
+	# Random color
+	rand = (BB,YY,GG,WW,RR,CC)
+	P = random.choice(rand)
+
+elif sys.platform == "win32":
+
+	BB = '' # Blue light
+	YY = '' # Yellow light
+	GG = '' # Green light
+	WW = '' # White light
+	RR = '' # Red light
+	CC = '' # Cyan light
+	B = ''  # Blue
+	Y = ''  # Yellow
+	G = ''  # Green
+	W = ''  # White
+	R = ''  # Red
+	C = ''  # Cyan
+	P = ''  # Random color
+
 def banner_old():
 
 	print (Y+"\n 0{==================================================}0")
@@ -44,7 +75,7 @@ def banner():
 	print (P+'  888888  dP__Yb  o.`Y8b 888888 88""  88"Yb  ')
 	print (P+'  88  88 dP""""Yb 8bodP  88  88 88888 88  Yb ')
 	print (W+'  -------------------------------------------')
-	print ("           \033[2;2m python2 "+sys.argv[0]+" --info\n")
+	print ("           \033[2;2m python2 "+sys.argv[0]+" --info\n"+W)
 
 def info():
 
@@ -330,13 +361,6 @@ def hash():
 #	except IOError:
 #		print (R+"["+W+"!"+R+"]"+G+" I cannot load this hash :"+W+hash)
 #		sys.exit()
-
-
-if sys.platform == "linux" or sys.platform == "linux2":
-	pass
-else:
-	print ("Sorry this script not supported in "+sys.platform)
-	sys.exit()
 
 try:
 	if sys.argv[1] == "-u":
