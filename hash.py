@@ -139,7 +139,7 @@ except ImportError:
 
 	os.system("pip2 install --upgrade pip")
 	os.system("pip2 install passlib")
-	os.system("pip2 knstall progressbar")
+	os.system("pip2 install progressbar")
 
 	print (B+"\n["+W+"="+B+"] "+G+"install success , run program again\n"+W)
         sys.exit()
