@@ -1,18 +1,20 @@
 #! usr/bin/python2
 
-# Author : Ci Ku ~ Debby Anggraini aka XnVer404
-# (c) copyright 2018
+"""
+__Author__ = Ci Ku ~ debby anggraini a.k.a xnver404
+__Name__ = hash generator
+__version__ = 3.4.1
+__Code__ = python
+__Github__ = https://github.com/ciku370
+__Date__ = 21 - 4 - 2018
+__Team__ = Blackhole Security
+__License__ = GNU General Public License V.3
 
-#  		            PERHATIAN
+(c) debby anggraini 2018
+
 """
-		      HARGAI PEMBUAT SCRIPT
-      	  	 	  RESPECT CODER
-"""
-import sys
-import hashlib
-import time
-import os
-import random
+
+import sys ,  hashlib ,  time ,  os , random
 
 from urllib import urlopen, urlencode
 from re import search
