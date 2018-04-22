@@ -4,9 +4,9 @@ Hasher is a Hash Cracker that has supported more than 7 types of hashes
 
 # hasher feature
 - [x] auto detect hash
-- [x] windows and linux supported
+- [x] supports windows and linux platforms
 - [x] fast decrypt
-- [x] support :
+- [x] list hash supported:
 
 - md4
 - md5
