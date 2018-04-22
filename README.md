@@ -1,4 +1,4 @@
-# hasher 2.3.6
+# hasher 3.0.1(alpha)
 
 Hasher is a Hash Cracker that has supported more than 7 types of hashes
 
