@@ -14,7 +14,7 @@ __License__ = GNU General Public License V.3
 
 """
 
-import sys ,  hashlib ,  time ,  os , random
+import sys ,  hashlib ,  time ,  os , random , binascii
 
 from urllib import urlopen, urlencode
 from re import search
@@ -60,12 +60,12 @@ elif sys.platform == "win32":
 
 def banner():
 	print (RR+'\n              Hash Cracker'+WW+' 3.0.1')
-	print (W+'  -------------------------------------------')
+	print (W+'  ------------------------------------------')
 	print (P+'  88  88    db    .dP"Y8 88  88 88888 88""Yb ')
 	print (P+'  88  88   dPYb   `Ybo." 88  88 88__  88__dP ')
 	print (P+'  888888  dP__Yb  o.`Y8b 888888 88""  88"Yb  ')
 	print (P+'  88  88 dP""""Yb 8bodP  88  88 88888 88  Yb ')
-	print (W+'  -------------------------------------------')
+	print (W+'  ------------------------------------------')
 	print ("           \033[2;2m python2 "+sys.argv[0]+" --info\n"+W)
 
 def info():
@@ -81,21 +81,22 @@ def info():
 	print (Y+" |"+B+" ["+R+"="+B+"] "+W+"Team     "+C+":"+W+" Blackhole Security"+Y+"                   |")
 	print (Y+" 0{===================================================}0\n")
 	print (B+" ["+R+"="+B+"] "+W+"python2 "+sys.argv[0]+" -u           to update wordlist "+B+"["+R+"="+B+"]")
-	print (B+"\n ["+R+"="+B+"] "+W+"list hash supported : "+Y+"["+W+"01"+Y+"] "+C+"md4")
-	print (Y+"                           ["+W+"02"+Y+"] "+C+"md5")
-	print (Y+"                           ["+W+"03"+Y+"] "+C+"sha1")
-	print (Y+"                           ["+W+"04"+Y+"] "+C+"sha224")
-	print (Y+"                           ["+W+"05"+Y+"] "+C+"sha256")
-	print (Y+"                           ["+W+"06"+Y+"] "+C+"sha384")
-	print (Y+"                           ["+W+"07"+Y+"] "+C+"sha512")
-	print (Y+"                           ["+W+"08"+Y+"] "+C+"ripemd160")
-	print (Y+"                           ["+W+"09"+Y+"] "+C+"whirlpool")
-	print (Y+"                           ["+W+"10"+Y+"] "+C+"MySQL 3.2.3")
-	print (Y+"                           ["+W+"11"+Y+"] "+C+"MySQL 4.1")
-	print (Y+"                           ["+W+"12"+Y+"] "+C+"MSSQL 2000")
-	print (Y+"                           ["+W+"13"+Y+"] "+C+"MSSQL 2005")
-	print (Y+"                           ["+W+"14"+Y+"] "+C+"Nthash")
-	print (Y+"                           ["+W+"15"+Y+"] "+C+"lmhash\n"+W)
+	print (B+"\n ["+R+"="+B+"] "+W+"list of supported hashes :"+Y+" ["+W+"01"+Y+"] "+C+"md4")
+	print (Y+"                                ["+W+"02"+Y+"] "+C+"md5")
+	print (Y+"                                ["+W+"03"+Y+"] "+C+"sha1")
+	print (Y+"                                ["+W+"04"+Y+"] "+C+"sha224")
+	print (Y+"                                ["+W+"05"+Y+"] "+C+"sha256")
+	print (Y+"                                ["+W+"06"+Y+"] "+C+"sha384")
+	print (Y+"                                ["+W+"07"+Y+"] "+C+"sha512")
+	print (Y+"                                ["+W+"08"+Y+"] "+C+"ripemd160")
+	print (Y+"                                ["+W+"09"+Y+"] "+C+"whirlpool")
+	print (Y+"                                ["+W+"10"+Y+"] "+C+"MySQL 3.2.3")
+	print (Y+"                                ["+W+"11"+Y+"] "+C+"MySQL 4.1")
+	print (Y+"                                ["+W+"12"+Y+"] "+C+"MSSQL 2000")
+	print (Y+"                                ["+W+"13"+Y+"] "+C+"MSSQL 2005")
+	print (Y+"                                ["+W+"14"+Y+"] "+C+"Nthash")
+	print (Y+"                                ["+W+"15"+Y+"] "+C+"lmhash")
+	print (Y+"                                ["+W+"16"+Y+"] "+C+"NTLM hash\n"+W)
 
 def Update():
 	banner()
@@ -204,6 +205,7 @@ def hash():
 		print (Y+"   ["+W+"02"+Y+"] "+C+"md5")
 		print (Y+"   ["+W+"03"+Y+"] "+C+"Nthash")
 		print (Y+"   ["+W+"04"+Y+"] "+C+"Lmhash")
+		print (Y+"   ["+W+"05"+Y+"] "+C+"Ntlm hash")
 
 		time.sleep(0.3)
 		cek = raw_input(B+"["+W+"?"+B+"] "+G+"Choose Hash "+Y+">>> "+W)
@@ -264,6 +266,9 @@ def hash():
 
 		elif cek == "04" or cek == "4" or cek.upper() == "LMHASH":
 			hash = "lmhash"
+
+		elif cek == "05" or cek == "5" or cek.upper() == "NTLM":
+			hash = "ntlm"
 
 		else:
 			print (R+"["+W+"!"+R+"] "+G+"Exiting ... \n"+W)
@@ -465,6 +470,23 @@ def hash():
 		print (B+"["+W+"{}"+B+"]"+G+" password not found\n"+W).format(date)
                 sys.exit()
 
+	elif hash == "ntlm":
+		hash_str = hash_str.lower()
+		for line in pbar(w):
+			line = line.strip()
+			h = ntlm_hash = binascii.hexlify(hashlib.new('md4', line.encode('utf-16le')).digest())
+
+			if h == hash_str:
+				end = time.asctime()
+				time.sleep(0.3)
+                                print (B+"\n["+W+"{}"+B+"] "+G+"Stopped...\n").format(end)
+                                time.sleep(0.3)
+                                print (B+"["+W+"="+B+"]"+G+" password found ")
+                                print (B+"["+R+"+"+B+"] "+W+hash_str+Y+" 0={==> "+W+line+W+"\n")
+                                sys.exit()
+
+		print (B+"["+W+"{}"+B+"]"+G+" password not found\n"+W).format(date)
+                sys.exit()
 
 	elif hash == "mssql2005":
 		hasb_str = hash_str.upper()
@@ -483,6 +505,7 @@ def hash():
 
                 print (B+"["+W+"{}"+B+"]"+G+" password not found\n"+W).format(date)
 		sys.exit()
+
 	else:
 		hash_str = hash_str.lower()
 		for line in pbar(w):
