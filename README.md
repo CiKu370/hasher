@@ -7,7 +7,7 @@ Hasher is a Hash Cracker that has supported more than 7 types of hashes
 - [x] supports windows and linux platforms
 - [x] fast decrypt
 - [x] list of supported hashes:
-
+```
 - md4
 - md5
 - sha1
@@ -23,7 +23,8 @@ Hasher is a Hash Cracker that has supported more than 7 types of hashes
 - mssql2005
 - nthash
 - lmhash
-
+- ntlm hash
+``` 
 # [ Installation ]
 ```
 $ apt update upgrade
