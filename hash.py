@@ -2,8 +2,8 @@
 
 """
 __Author__ = Ci Ku ~ debby anggraini a.k.a xnver404
-__Name__ = hash generator
-__version__ = 3.4.1
+__Name__ = hasher
+__version__ = 3.0.1 (alpha)
 __Code__ = python
 __Github__ = https://github.com/ciku370
 __Date__ = 21 - 4 - 2018
@@ -18,9 +18,6 @@ import sys ,  hashlib ,  time ,  os , random , binascii
 
 from urllib import urlopen, urlencode
 from re import search
-
-date = time.asctime()
-start1 = time.asctime()
 
 # color
 if sys.platform == "linux" or sys.platform == "linux2":
@@ -99,7 +96,6 @@ def info():
 	print (Y+"                                ["+W+"16"+Y+"] "+C+"NTLM hash\n"+W)
 
 def Update():
-	banner()
 	if sys.platform == "linux" or sys.platform == "linux2":
 		print (B+" 0={"+W+" UPDATE WORDLIST "+B+"}=0\n")
 		time.sleep(1)
@@ -115,7 +111,7 @@ def Update():
 
 		os.system("curl https://raw.githubusercontent.com/CiKu370/hasher/master/wordlist.txt -o wordlist.txt")
 
-		print (R+"\n["+W+"*"+R+"] "+G+"download Finish\n")
+		print (R+"\n["+W+"*"+R+"] "+G+"download Finish\n"+W)
 		sys.exit()
 	else:
 		print ("sorry, word list update feature is only available on linux platform\n")
@@ -125,6 +121,7 @@ def Update():
 try:
 
 	# module tambahan
+
 	import progressbar
 	from passlib.hash import mysql323 as m20
 	from passlib.hash import mysql41 as m25
@@ -149,9 +146,9 @@ def hash():
 	banner()
 
 	hash_str = raw_input(B+"["+W+"?"+B+"]"+G+" Hash : "+W)
-	time.sleep(0.5)
+#	time.sleep(0.5)
 	print (B+"["+R+"="+B+"] "+G+"Cek Hash Type ...")
-	time.sleep(1)
+#	time.sleep(1)
 
 
 	# Contoh Hash nya , nb : jangan di ubah ntar error
@@ -187,7 +184,7 @@ def hash():
 	elif len(hash_str)==len(SHA512) and hash_str.isdigit()==False and hash_str.isalpha()==False and hash_str.isalnum()==True:
 	        print (Y+"   ["+W+"01"+Y+"] "+C+"sha512")
 		print (Y+"   ["+W+"02"+Y+"] "+C+"whirlpool")
-		time.sleep(0.3)
+#		time.sleep(0.3)
 		cek = raw_input(B+"["+W+"?"+B+"] "+G+"Choose hash "+Y+">>> "+W)
 
 		if cek == "1" or cek == "01" or cek == "sha512":
@@ -196,7 +193,7 @@ def hash():
 			hash = "whirlpool"
 		else:
 			print (R+"["+W+"!"+R+"] "+G+"Exiting ... \n")
-                        time.sleep(0.5)
+ #                       time.sleep(0.5)
                         sys.exit()
 
 	elif len(hash_str)==len(md) and hash_str.isdigit()==False and hash_str.isalpha()==False and hash_str.isalnum()==True:
@@ -207,7 +204,7 @@ def hash():
 		print (Y+"   ["+W+"04"+Y+"] "+C+"Lmhash")
 		print (Y+"   ["+W+"05"+Y+"] "+C+"Ntlm hash")
 
-		time.sleep(0.3)
+#		time.sleep(0.3)
 		cek = raw_input(B+"["+W+"?"+B+"] "+G+"Choose Hash "+Y+">>> "+W)
 
 		if cek == "1" or cek == "01" or cek == "md4" or cek == "MD4" or cek == "Md4":
@@ -215,12 +212,12 @@ def hash():
 		elif cek == "2" or cek == "02" or cek == "md5" or cek == "MD5" or cek == "Md5":
 			try:
 				print (B+"["+R+"="+B+"] "+G+"open google")
-				time.sleep(0.3)
+#				time.sleep(0.3)
 				print (B+"["+W+"*"+B+"] "+G+"Start ...")
-				time.sleep(0.3)
-				start1 = time.asctime()
-				end1 = time.asctime()
-				print (B+"\n["+W+"{}"+B+"] "+G+"Searching..."+Y).format(start1)
+#				time.sleep(0.3)
+				start = ("00:00:00")
+				start1 = time.time()
+				print (B+"\n["+W+"{}"+B+"] "+G+"Searching..."+Y).format(start)
 
 				data = urlencode({"md5":hash_str,"x":"21","y":"8"})
         	    		html = urlopen("http://md5.my-addr.com/md5_decrypt-md5_cracker_online/md5_decoder_tool.php", data)
@@ -228,8 +225,9 @@ def hash():
         	     		match = search (r"<span class='middle_title'>Hashed string</span>: [^<]*</div>", find)    
 	               		if match:
 
-					print (B+"["+W+"{}"+B+"] "+G+"Stopped...").format(end1)
-	                                time.sleep(0.3)
+					end = time.strftime("%H:%M:%S", time.gmtime(time.time() - start1))
+					print (B+"["+W+"{}"+B+"] "+G+"Stopped...").format(end)
+#	                                time.sleep(0.3)
 					print (B+"\n["+W+"="+B+"]"+G+" password found ")
 					print (B+"["+W+"+"+B+"] "+W+(hash_str)+Y+" 0={==> "+W+(match.group().split('span')[2][3:-6])+"\n")
 					sys.exit()
@@ -239,8 +237,10 @@ def hash():
 			                find = html.read()
 				        match = search (r"<span class='middle_title'>Hashed string</span>: [^<]*</div>", find)
 			                if match:
-        				    	print (B+"["+W+"{}"+B+"] "+G+"Stopped...").format(date)
-						time.sleep(0.3)
+
+					        end = time.strftime("%H:%M:%S", time.gmtime(time.time() - start1))
+        				    	print (B+"["+W+"{}"+B+"] "+G+"Stopped...").format(end)
+#						time.sleep(0.3)
 						print (B+"\n["+W+"="+B+"]"+G+" password found ")
                 				print (B+" ["+W+"+"+B+"] "+W+hash_str+Y+" 0={==> "+W+match.group().split('span')[2][3:-6]+W+" \n")
 						sys.exit()
@@ -248,17 +248,23 @@ def hash():
 	                  			url = "http://www.nitrxgen.net/md5db/" + hash_str
         	        			cek = urlopen(url).read()
                 				if len(cek) > 0:
-							print (B+"["+W+"{}"+B+"] "+G+"Stopped...").format(date)
-							time.sleep(0.3)
+
+						        end = time.strftime("%H:%M:%S", time.gmtime(time.time() - start1))
+							print (B+"["+W+"{}"+B+"] "+G+"Stopped...").format(end)
+#							time.sleep(0.3)
 				                	print (B+"\n["+W+"="+B+"]"+G+" password found ")
 						        print (B+"["+W+"+"+B+"] "+W+hash_str+Y+" 0={==> "+W+cek+"\n")
 							sys.exit()
 						else:
-							print (B+"["+W+"{}"+B+"]"+G+" password not found\n").format(date)
+
+						        end = time.strftime("%H:%M:%S", time.gmtime(time.time() - start1))
+							print (B+"["+W+"{}"+B+"]"+G+" password not found\n").format(end)
 							hash = "md5"
 
 			except IOError:
-				print (B+"["+W+"{}"+B+"]"+G+" Timeout\n").format(date)
+
+				end = time.strftime("%H:%M:%S", time.gmtime(time.time() - start1))
+				print (B+"["+W+"{}"+B+"]"+G+" Timeout\n").format(end)
 				hash = "md5"
 
 		elif cek == "03" or cek == "3" or cek.upper() == "NTHASH":
@@ -272,7 +278,7 @@ def hash():
 
 		else:
 			print (R+"["+W+"!"+R+"] "+G+"Exiting ... \n"+W)
-			time.sleep(0.5)
+#			time.sleep(0.5)
 			sys.exit()
 
 
@@ -280,18 +286,18 @@ def hash():
 
 		print (Y+"   ["+W+"01"+Y+"] "+C+"sha1")
 		print (Y+"   ["+W+"02"+Y+"] "+C+"ripemd160")
-		time.sleep(0.3)
+#		time.sleep(0.3)
 		cek = raw_input(B+"["+W+"?"+B+"] "+G+"Choose Hash "+Y+">>> "+W)
 
 		if cek == "1" or cek == "01" or cek == "sha1" or cek == "SHA1" or cek == "Sha1":
-			time.sleep(0.5)
+#			time.sleep(0.5)
 			print (B+"["+R+"="+B+"] "+G+"open google")
-			time.sleep(0.3)
+#			time.sleep(0.3)
 			print (B+"["+W+"*"+B+"] "+G+"Start ...")
-			time.sleep(0.3)
-			start1 = time.asctime()
-			end1 = time.asctime()
-			print (B+"\n["+W+"{}"+B+"] "+G+"Searching..."+Y).format(start1)
+#			time.sleep(0.3)
+			start = ("00:00:00")
+			start1 = time.time()
+			print (B+"\n["+W+"{}"+B+"] "+G+"Searching..."+Y).format(start)
 			try:
 
 				data = urlencode({"auth":"8272hgt", "hash":hash_str, "string":"","Submit":"Submit"})
@@ -299,24 +305,30 @@ def hash():
 				find = html.read()
     				match = search (r'<span class=hervorheb2>[^<]*</span></div></TD>', find)
  				if match:
-					print (B+"["+W+"{}"+B+"] "+G+"Stopped...").format(date)
-					time.sleep(0.3)
+
+					end = time.strftime("%H:%M:%S", time.gmtime(time.time() - start1))
+					print (B+"["+W+"{}"+B+"] "+G+"Stopped...").format(end)
+#					time.sleep(0.3)
 		           		print (B+"\n["+W+"="+B+"]"+G+" password found ")
 				        print (B+"["+W+"+"+B+"] "+W+hash_str+Y+" 0={==> "+W+match.group().split('hervorheb2>')[1][:-18]+"\n")
 					sys.exit()
 
 				else:
+
+					end = time.strftime("%H:%M:%S", time.gmtime(time.time() - start1))
 					print (B+"["+W+"{}"+B+"]"+G+" password not found\n").format(date)
 					hash = "sha1"
 			except IOError:
-				print (B+"["+W+"{}"+B+"]"+G+" Timeout\n").format(date)
+
+				end = time.strftime("%H:%M:%S", time.gmtime(time.time() - start1))
+				print (B+"["+W+"{}"+B+"]"+G+" Timeout\n").format(end)
 				hash = "sha1"
 
 		elif cek == "2" or cek == "02" or cek == "ripemd160":
 			hash = 'ripemd160'
 		else:
 			print (R+"["+W+"!"+R+"] "+G+"Exiting ... \n"+W)
-			time.sleep(0.5)
+#			time.sleep(0.5)
 			sys.exit()
 
 	elif len(hash_str)==len(sha224) and hash_str.isdigit()==False and hash_str.isalpha()==False and hash_str.isalnum()==True:
@@ -329,14 +341,14 @@ def hash():
 
 	elif len(hash_str)==len(sha256) and hash_str.isdigit()==False and hash_str.isalpha()==False and hash_str.isalnum()==True:
 		print (B+"["+R+"="+B+"] "+G+"hash type : "+W+"sha256")
-		time.sleep(0.5)
+#		time.sleep(0.5)
 		print (B+"["+R+"="+B+"] "+G+"open google")
-		time.sleep(0.3)
+#		time.sleep(0.3)
 		print (B+"["+W+"*"+B+"] "+G+"Start ...")
-		time.sleep(0.3)
-		start1 = time.asctime()
-		end1 = time.asctime()
-		print (B+"\n["+W+"{}"+B+"] "+G+"Searching..."+Y).format(start1)
+#		time.sleep(0.3)
+		start = ("00:00:00")
+		start1 = time.time()
+		print (B+"\n["+W+"{}"+B+"] "+G+"Searching..."+Y).format(start)
 
 		try:
 			data = urlencode({"hash":hash_str, "decrypt":"Decrypt"})
@@ -344,17 +356,23 @@ def hash():
 	        	find = html.read()
     		        match = search (r'<b>[^<]*</b><br/><br/>', find)
 		        if match:
-			        print (B+"["+W+"{}"+B+"] "+G+"Stopped...").format(date)
-				time.sleep(0.3)
+
+        			end = time.strftime("%H:%M:%S", time.gmtime(time.time() - start1))
+			        print (B+"["+W+"{}"+B+"] "+G+"Stopped...").format(end)
+#				time.sleep(0.3)
 	           		print (B+"\n["+W+"="+B+"]"+G+" password found ")
 			        print (B+"["+W+"+"+B+"] "+W+hash_str+Y+" 0={==> "+W+match.group().split('<b>')[1][:-14]+"\n")
 				sys.exit()
 
 			else:
-				print (B+"["+W+"{}"+B+"]"+G+" password not found\n").format(date)
+
+			        end = time.strftime("%H:%M:%S", time.gmtime(time.time() - start1))
+				print (B+"["+W+"{}"+B+"]"+G+" password not found\n").format(end)
 				hash = "sha256"
 		except IOError:
-				print (B+"["+W+"{}"+B+"]"+G+" Timeout\n").format(date)
+
+				end = time.strftime("%H:%M:%S", time.gmtime(time.time() - start1))
+				print (B+"["+W+"{}"+B+"]"+G+" Timeout\n").format(end)
 				hash = "sha256"
 
 	else:
@@ -368,36 +386,41 @@ def hash():
 		w = open("wordlist.txt","r").readlines()
 		x = len(w)
 	except IOError:
-		time.sleep(0.5)
+#		time.sleep(0.5)
 		print (B+"["+R+"="+B+"]"+G+" Can't load "+W+"wordlist.txt, "+G+"file not exist\n"+W)
 		sys.exit()
 
-	start = time.asctime()
-	time.sleep(0.3)
-	print (B+"["+R+"="+B+"] "+G+"load "+W+"{}"+G+" word in "+W+"wordlist.txt").format(x)
+#	time.sleep(0.3)
+	print (B+"["+R+"="+B+"] "+G+"load "+W+"{}"+G+" words in "+W+"wordlist.txt").format(x)
 	print (B+"["+W+"*"+B+"] "+G+"start ..\n")
-	time.sleep(1)
+#	time.sleep(1)
+
+	start = ("00:00:00")
+	start1 = time.time()
 	print (B+"["+W+"{}"+B+"] "+G+"Cracking..."+Y).format(start)
 
 	pbar = progressbar.ProgressBar()
 
 	if hash == "mysql1323":
+
 		hash_str = hash_str.lower()
 		for line in pbar(w):
 			line = line.strip()
 			h = m20.encrypt(line)
 
+
 			if h == hash_str:
 
-				end = time.asctime()
-                                time.sleep(0.3)
+				end = time.strftime("%H:%M:%S", time.gmtime(time.time() - start1))
+#                                time.sleep(0.3)
                                 print (B+"\n["+W+"{}"+B+"] "+G+"Stopped...\n").format(end)
-                                time.sleep(0.3)
+#                                time.sleep(0.3)
                                 print (B+"["+W+"="+B+"]"+G+" password found ")
 				print (B+"["+R+"+"+B+"] "+W+hash_str+Y+" 0={==> "+W+line+W+"\n")
                                 sys.exit()
 
-		print (B+"["+W+"{}"+B+"]"+G+" password not found\n"+W).format(date)
+		end = time.strftime("%H:%M:%S", time.gmtime(time.time() - start1))
+		print (B+"["+W+"{}"+B+"]"+G+" password not found\n"+W).format(end)
 		sys.exit()
 
 	elif hash == "lmhash":
@@ -407,15 +430,17 @@ def hash():
 			line = line.strip()
 			h = lmhash.encrypt(line)
 			if h == hash_str:
-				end = time.asctime()
-                                time.sleep(0.3)
+
+			        end = time.strftime("%H:%M:%S", time.gmtime(time.time() - start1))
+#                                time.sleep(0.3)
                                 print (B+"\n["+W+"{}"+B+"] "+G+"Stopped...\n").format(end)
-                                time.sleep(0.3)
+#                                time.sleep(0.3)
                                 print (B+"["+W+"="+B+"]"+G+" password found ")
                                 print (B+"["+R+"+"+B+"] "+W+hash_str+Y+" 0={==> "+W+line+W+"\n")
                                 sys.exit()
 
-		print (B+"["+W+"{}"+B+"]"+G+" password not found\n"+W).format(date)
+		end = time.strftime("%H:%M:%S", time.gmtime(time.time() - start1))
+		print (B+"["+W+"{}"+B+"]"+G+" password not found\n"+W).format(end)
                 sys.exit()
 
 	elif hash == "nthash":
@@ -426,87 +451,105 @@ def hash():
                         h = nthash.encrypt(line)
 
                         if h == hash_str:
-                                end = time.asctime()
-                                time.sleep(0.3)
+
+			        end = time.strftime("%H:%M:%S", time.gmtime(time.time() - start1))
+#                                time.sleep(0.3)
                                 print (B+"\n["+W+"{}"+B+"] "+G+"Stopped...\n").format(end)
-                                time.sleep(0.3)
+#                                time.sleep(0.3)
                                 print (B+"["+W+"="+B+"]"+G+" password found ")
                                 print (B+"["+R+"+"+B+"] "+W+hash_str+Y+" 0={==> "+W+line+W+"\n")
                                 sys.exit()
 
+		end = time.strftime("%H:%M:%S", time.gmtime(time.time() - start1))
+                print (B+"["+W+"{}"+B+"]"+G+" password not found\n"+W).format(end)
+                sys.exit()
+
 	elif hash == "mysql41":
+
 		hash_str = hash_str.upper()
 		for line in pbar(w):
 			line = line.strip()
 			h = m25.encrypt(line)
 
 			if h == hash_str:
-				end = time.asctime()
-                                time.sleep(0.3)
+
+			        end = time.strftime("%H:%M:%S", time.gmtime(time.time() - start1))
+#                                time.sleep(0.3)
                                 print (B+"\n["+W+"{}"+B+"] "+G+"Stopped...\n").format(end)
-                                time.sleep(0.3)
+#                                time.sleep(0.3)
                                 print (B+"["+W+"="+B+"]"+G+" password found ")
                                 print (B+"["+R+"+"+B+"] "+W+hash_str+Y+" 0={==> "+W+line+W+"\n")
                                 sys.exit()
 
-		print (B+"["+W+"{}"+B+"]"+G+" password not found\n"+W).format(date)
+		end = time.strftime("%H:%M:%S", time.gmtime(time.time() - start1))
+		print (B+"["+W+"{}"+B+"]"+G+" password not found\n"+W).format(end)
                 sys.exit()
 
 	elif hash == "mssql2000":
+
 		hash_str = hash_str.upper()
 		for line in pbar(w):
 			line = line.strip()
 			h = ms20.encrypt(line)
 
 			if h == hash_str:
-				end = time.asctime()
-                                time.sleep(0.3)
+
+				end = time.strftime("%H:%M:%S", time.gmtime(time.time() - start1))
+#                                time.sleep(0.3)
                                 print (B+"\n["+W+"{}"+B+"] "+G+"Stopped...\n").format(end)
-                                time.sleep(0.3)
+#                                time.sleep(0.3)
                                 print (B+"["+W+"="+B+"]"+G+" password found ")
                                 print (B+"["+R+"+"+B+"] "+W+hash_str+Y+" 0={==> "+W+line+W+"\n")
                                 sys.exit()
 
-		print (B+"["+W+"{}"+B+"]"+G+" password not found\n"+W).format(date)
+		end = time.strftime("%H:%M:%S", time.gmtime(time.time() - start1))
+		print (B+"["+W+"{}"+B+"]"+G+" password not found\n"+W).format(end)
                 sys.exit()
 
 	elif hash == "ntlm":
+
 		hash_str = hash_str.lower()
 		for line in pbar(w):
 			line = line.strip()
 			h = ntlm_hash = binascii.hexlify(hashlib.new('md4', line.encode('utf-16le')).digest())
-
 			if h == hash_str:
-				end = time.asctime()
-				time.sleep(0.3)
+
+				end = time.strftime("%H:%M:%S", time.gmtime(time.time() - start1))
+#				time.sleep(0.3)
                                 print (B+"\n["+W+"{}"+B+"] "+G+"Stopped...\n").format(end)
-                                time.sleep(0.3)
+#                                time.sleep(0.3)
                                 print (B+"["+W+"="+B+"]"+G+" password found ")
                                 print (B+"["+R+"+"+B+"] "+W+hash_str+Y+" 0={==> "+W+line+W+"\n")
                                 sys.exit()
 
-		print (B+"["+W+"{}"+B+"]"+G+" password not found\n"+W).format(date)
+		end = time.strftime("%H:%M:%S", time.gmtime(time.time() - start1))
+		print (B+"["+W+"{}"+B+"]"+G+" password not found\n"+W).format(end)
                 sys.exit()
 
 	elif hash == "mssql2005":
+
 		hasb_str = hash_str.upper()
                 for line in pbar(w):
                         line = line.strip()
                         h = ms25.encrypt(line)
 
                         if h == hash_str:
-                                end = time.asctime()
-                                time.sleep(0.3)
+
+                                end = time.strftime("%H:%M:%S", time.gmtime(time.time() - start1))
+#                                time.sleep(0.3)
                                 print (B+"\n["+W+"{}"+B+"] "+G+"Stopped...\n").format(end)
-                                time.sleep(0.3)
+#                                time.sleep(0.3)
                                 print (B+"["+W+"="+B+"]"+G+" password found ")
                                 print (B+"["+R+"+"+B+"] "+W+hash_str+Y+" 0={==> "+W+line+W+"\n")
                                 sys.exit()
 
-                print (B+"["+W+"{}"+B+"]"+G+" password not found\n"+W).format(date)
+
+		end = time.strftime("%H:%M:%S", time.gmtime(time.time() - start1))
+                print (B+"["+W+"{}"+B+"]"+G+" password not found\n"+W).format(end)
 		sys.exit()
 
 	else:
+
 		hash_str = hash_str.lower()
 		for line in pbar(w):
 
@@ -515,15 +558,17 @@ def hash():
 			h.update(line)
 
 			if h.hexdigest() == hash_str:
-				end = time.asctime()
-				time.sleep(0.3)
+
+				end = time.strftime("%H:%M:%S", time.gmtime(time.time() - start1))
+#				time.sleep(0.3)
 				print (B+"\n["+W+"{}"+B+"] "+G+"Stopped...\n").format(end)
-				time.sleep(0.3)
+#				time.sleep(0.3)
 				print (B+"["+W+"="+B+"]"+G+" password found ")
         	       		print (B+"["+R+"+"+B+"] "+W+hash_str+Y+" 0={==> "+W+line+W+"\n")
 				sys.exit()
 
-		print (B+"["+W+"{}"+B+"]"+G+" password not found\n"+W).format(date)
+		end = time.strftime("%H:%M:%S", time.gmtime(time.time() - start1))
+		print (B+"["+W+"{}"+B+"]"+G+" password not found\n"+W).format(end)
 		sys.exit()
 
 try:
@@ -537,3 +582,5 @@ try:
 
 except IndexError:
 	hash()
+
+" Thanks you ^^"
